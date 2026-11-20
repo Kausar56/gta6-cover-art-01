@@ -3,20 +3,77 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cover Snap</title>
+<title>Vice Frame — Cover Art Maker</title>
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">VF</span> VICE FRAME</div>
+  <p class="tagline">Turn your photos into multi-panel poster cover art — sunset grade, big lettering, ready to post.</p>
+</header>
 <main class="app">
-  <section class="controls">
-    <h1>Cover Snap</h1>
-    <p>A photo and a caption, made into a square cover.</p>
-    <label>Photo <input id="photo" type="file" accept="image/*"></label>
-    <label>Caption <input id="caption" type="text" maxlength="40" value="Sunset Heist"></label>
-    <button id="export" type="button">Export PNG 1080 x 1080</button>
-    <p id="status" role="status"></p>
+  <aside class="controls">
+    <section>
+      <h2>1 · Your photos</h2>
+      <label class="file-pick">Add photos from your device
+        <input id="photo" type="file" accept="image/*" multiple>
+      </label>
+      <p class="hint">Nothing is uploaded — photos are read on this machine only.</p>
+      <div class="samples" id="samples">
+        <span class="samples-label">Or start with a sample:</span>
+        <button type="button" data-sample="boulevard">Boulevard</button>
+        <button type="button" data-sample="car">Neon car</button>
+        <button type="button" data-sample="boat">Speedboat</button>
+        <button type="button" data-sample="pier">The pier</button>
+      </div>
+      <div class="tray" id="tray" aria-label="Loaded photos"></div>
+    </section>
+    <section>
+      <h2>2 · The words</h2>
+      <label>Caption <input id="caption" type="text" maxlength="26" value="Sunset Heat"></label>
+      <label>Subtitle <input id="subtitle" type="text" maxlength="34" value="Palm Shores"></label>
+    </section>
+    <section>
+      <h2>3 · The look</h2>
+      <div class="seg" id="layouts" role="group" aria-label="Panel layout">
+        <button type="button" data-layout="vice" class="on">Vice Grid</button>
+        <button type="button" data-layout="slash">Slash</button>
+        <button type="button" data-layout="mosaic">Mosaic</button>
+      </div>
+      <label>Colour grade
+        <select id="grade">
+          <option value="sunset" selected>Vice Sunset</option>
+          <option value="neon">Neon Nights</option>
+          <option value="gold">Golden Hour</option>
+          <option value="clean">Clean</option>
+        </select>
+      </label>
+      <label>Grade strength <input id="intensity" type="range" min="0" max="1" step="0.05" value="0.85"></label>
+    </section>
+    <section>
+      <h2>4 · The panel</h2>
+      <p class="hint" id="panel-label">Panel 1 selected. Click a photo above to put it here, drag the cover to move it.</p>
+      <label>Zoom <input id="zoom" type="range" min="1" max="3" step="0.02" value="1"></label>
+      <div class="row">
+        <button type="button" id="fill-all">One photo, all panels</button>
+        <button type="button" id="reset-frame">Reset framing</button>
+      </div>
+    </section>
+    <section>
+      <h2>5 · Export</h2>
+      <div class="seg" id="sizes" role="group" aria-label="Export size">
+        <button type="button" data-size="1080x1080" class="on">Square 1080 × 1080</button>
+        <button type="button" data-size="1080x1350">Portrait 1080 × 1350</button>
+        <button type="button" data-size="1920x1080">Wide 1920 × 1080</button>
+      </div>
+      <button id="export" type="button" class="export-btn">Export PNG</button>
+      <p id="status" role="status"></p>
+    </section>
+  </aside>
+  <section class="stage">
+    <canvas id="cover" width="1080" height="1080" aria-label="Your cover, live preview"></canvas>
+    <p class="stage-hint">Click a panel to select it · drag to move its photo · scroll over the cover to zoom the panel</p>
   </section>
-  <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
 </main>
 <script type="module" src="./src/main.js"></script>
 </body>
