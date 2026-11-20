@@ -68,6 +68,8 @@ button:hover { border-color: var(--cyan); }
 .tray figcaption { font-size: 10.5px; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .row { display: flex; gap: 8px; }
 .row button { flex: 1; }
+.wide-btn { width: 100%; }
+canvas#cover:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
 .export-btn {
   padding: 13px; font-size: 16px; border: 0; border-radius: 10px; color: #1c0b30;
   background: linear-gradient(135deg, var(--amber), var(--pink));

@@ -195,6 +195,20 @@ document.getElementById('reset-frame').addEventListener('click', () => {
   redraw();
 });
 
+document.getElementById('shuffle').addEventListener('click', () => {
+  if (!state.photos.length) {
+    status.textContent = 'Load a photo first — shuffle deals your loaded photos into the panels.';
+    return;
+  }
+  state.panels.forEach((panel) => {
+    panel.photo = Math.floor(Math.random() * state.photos.length);
+    panel.zoom = 1 + Math.random() * 1.1;
+    panel.pan = { x: (Math.random() - 0.5) * 0.3, y: (Math.random() - 0.5) * 0.3 };
+  });
+  status.textContent = 'Shuffled. Drag any panel to fine-tune its crop.';
+  redraw();
+});
+
 document.getElementById('export').addEventListener('click', exportPng);
 
 // --- Direct manipulation on the cover ---------------------------------------------------------

@@ -8,6 +8,8 @@
 
 const DEFAULT_PHOTOS = ['boulevard', 'car', 'boat', 'pier'];
 const DEFAULT_ASSIGN = [0, 1, 3, 2, 1];
+// The opening scene's signature crops: the pier panel pushed in a little, the last car panel tight.
+const DEFAULT_FRAMES = ['2,0,0,1.25', '4,-0.12,0.05,1.7'];
 
 export async function runShot(shot, query, api) {
   if (shot === 'cover' || shot === 'export') document.body.classList.add('shot-cover');
@@ -23,7 +25,8 @@ export async function runShot(shot, query, api) {
 
   const assign = (query.get('assign') ?? DEFAULT_ASSIGN.join(',')).split(',').map(Number);
   api.assign(assign);
-  for (const frame of query.getAll('frames')) {
+  const frames = query.getAll('frames');
+  for (const frame of frames.length ? frames : DEFAULT_FRAMES) {
     const [panel, x, y, zoom] = frame.split(',').map(Number);
     api.setFraming(panel, { x, y }, zoom);
   }

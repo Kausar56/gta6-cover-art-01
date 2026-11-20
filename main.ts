@@ -1,17 +1,16 @@
-// A working gta6-cover-art-01 entry (Node 22, standard library only): the app is this directory's app/ folder, plain
-// static files a desktop browser loads offline (app/index.html and its ES modules, no library and no network
-// request), and the program hands it in. It copies app/ and screenshots/ from beside this file to /output and writes
-// /output/dossier.json, the summary the judge reads, with the vendored make.fun library. Only the plumbing, not the
-// cover art the bounty asks for: Cover Snap, a plain one-photo square cover with a sunset tint and a bold caption,
-// exported as a 1080 x 1080 PNG. Its two sample photos (app/samples/) were made for make.fun with an image model and
-// are free to use. Build your own GTA-style cover maker in its place, put your 3 or 4 PNG or JPEG screenshots in
-// screenshots/ (the first by name is the cover) and run it.
+// The make.fun entry for Vice Frame (Node 22, standard library only): the app is this directory's app/
+// folder, plain static files a desktop browser loads offline (app/index.html and its ES modules, no library
+// and no network request), and this program hands it in. It copies app/ and screenshots/ from beside this
+// file to /output and writes /output/dossier.json, the summary the judge reads, with the vendored make.fun
+// library. The app itself is a multi-panel GTA-style cover art maker: photos are dealt into slanted poster
+// panels, graded with a Vice City sunset or neon wash, captioned in big gradient lettering and exported as
+// a PNG at 1080 x 1080, 1080 x 1350 or 1920 x 1080.
 //
 // Serve it locally with `node serve.ts`, then open http://localhost:8080.
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
-import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildDossier } from './vendor/makefun-app.ts';
@@ -38,3 +37,9 @@ writeFileSync(
     app_path_max_bytes: 1000,
   }),
 );
+
+// A one-line hand-in summary on the console (the written bytes are unaffected): what was handed in, and
+// the dossier's size, so a person running this by hand can see the entry is whole.
+const shotCount = existsSync(join(out, 'screenshots')) ? readdirSync(join(out, 'screenshots')).length : 0;
+const dossierBytes = statSync(join(out, 'dossier.json')).size;
+console.log(`vice-frame: handed in the app and ${shotCount} screenshots; dossier.json is ${dossierBytes} bytes.`);

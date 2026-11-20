@@ -1,5 +1,1 @@
-[
-  { "name": "1-cover.jpg", "query": "?shot=cover&photo=pier&caption=Sunset%20Heist", "w": 1080, "h": 1080 },
-  { "name": "2-editor.jpg", "query": "?shot=editor&photo=boulevard&caption=Boulevard%20Queen", "w": 1280, "h": 720 },
-  { "name": "3-cover.jpg", "query": "?shot=cover&photo=boulevard&caption=Boulevard%20Queen", "w": 1080, "h": 1080 }
-]
+[{"exported":"1920x1080","mode":"export","name":"1-cover.jpg","query":"?shot=export&size=1920x1080&frames=0,0,0.68,1.12","shown":"1280x720"},{"mode":"page","name":"2-editor.jpg","query":"?shot=editor&select=1","window":"1280x960"},{"exported":"1080x1350","mode":"export","name":"3-cover-portrait.jpg","query":"?shot=export&size=1080x1350&layout=mosaic&grade=neon&caption=Neon%20Mile&subtitle=After%20Midnight&photos=car,boat,boulevard,pier&assign=0,1,2,3,0,1&frames=4,0.1,0,1.6","shown":"1024x1280"},{"exported":"1080x1080","mode":"export","name":"4-cover-square.jpg","query":"?shot=export&size=1080x1080&layout=slash&grade=gold&caption=Endless%20Summer&subtitle=Three%20Takes%2C%20One%20Sunset&photos=car&assign=0,0,0&frames=1,-0.08,0.08,1.6&frames=2,0.14,-0.04,2.3","shown":"1080x1080"}]
